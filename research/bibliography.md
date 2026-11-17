@@ -1,0 +1,21 @@
+# Bibliography
+
+- Shapiro, MacDonald & Greenlaw (2022). Principles of Microeconomics 3e, §7.1 Explicit and Implicit Costs, and Accounting and Economic Profit. OpenStax. <https://openstax.org/books/principles-microeconomics-3e/pages/7-1-explicit-and-implicit-costs-and-accounting-and-economic-profit>
+- Shapiro, MacDonald & Greenlaw (2022). Principles of Microeconomics 3e, §7.2 Production in the Short Run. OpenStax. <https://openstax.org/books/principles-microeconomics-3e/pages/7-2-production-in-the-short-run>
+- Shapiro, MacDonald & Greenlaw (2022). Principles of Microeconomics 3e, §8.2 How Perfectly Competitive Firms Make Output Decisions. OpenStax. <https://openstax.org/books/principles-microeconomics-3e/pages/8-2-how-perfectly-competitive-firms-make-output-decisions>
+- Shapiro, MacDonald & Greenlaw (2022). Principles of Microeconomics 3e, §8.3 Entry and Exit Decisions in the Long Run. OpenStax. <https://openstax.org/books/principles-microeconomics-3e/pages/8-3-entry-and-exit-decisions-in-the-long-run>
+- Shapiro, MacDonald & Greenlaw (2022). Principles of Microeconomics 3e, §10.1 Monopolistic Competition. OpenStax. <https://openstax.org/books/principles-microeconomics-3e/pages/10-1-monopolistic-competition>
+- Shapiro, MacDonald & Greenlaw (2022). Principles of Microeconomics 3e, §10.2 Oligopoly. OpenStax. <https://openstax.org/books/principles-microeconomics-3e/pages/10-2-oligopoly>
+- Adam Smith (1776). The Wealth of Nations, Book I, Chapter VII. Econlib edition. <https://www.econlib.org/library/Smith/smWN.html?chapter_num=10>
+- David Ricardo (1817; 3rd ed. 1821). On the Principles of Political Economy and Taxation, Chapter II, On Rent. Econlib edition. <https://www.econlib.org/library/Ricardo/ricP.html?chapter_num=3>
+- Alfred Marshall (1890; 8th ed. 1920). Principles of Economics, Book V, Chapter I. Econlib edition. <https://www.econlib.org/library/Marshall/marP.html?chapter_num=29>
+- Friedrich A. Hayek (1945). The Use of Knowledge in Society. American Economic Review 35(4), 519–530. <https://www.econlib.org/library/Essays/hykKnw.html>
+- Israel M. Kirzner (1997). Entrepreneurial Discovery and the Competitive Market Process. Journal of Economic Literature 35(1), 60–85. <https://econfaculty.gmu.edu/pboettke/summer/summer%20docs/kirzner1997.pdf>
+- Joseph A. Schumpeter (1942; excerpt from 1950 edition with 1976 pagination). Capitalism, Socialism and Democracy, Chapter VII, The Process of Creative Destruction. University of Connecticut excerpt. <https://richard-langlois.uconn.edu/home/teaching/econ-5463-the-economics-of-organization/capitalism-socialism-and-democracy/>
+- Joseph E. Stiglitz (2001). Information and the Change in the Paradigm in Economics. Nobel Prize Lecture. <https://www.nobelprize.org/prizes/economic-sciences/2001/stiglitz/lecture/>
+- Robert S. Pindyck (1991). Irreversibility, Uncertainty, and Investment. Journal of Economic Literature 29(3), 1110–1148. <https://web.mit.edu/rpindyck/www/Papers/IrreverUncertInvestmentJEL1991.pdf>
+- Aghion, Bloom, Blundell, Griffith & Howitt (2005). Competition and Innovation: An Inverted-U Relationship. Quarterly Journal of Economics 120(2), 701–728. <https://doi.org/10.1093/qje/120.2.701>
+- Marc J. Melitz (2003). The Impact of Trade on Intra-Industry Reallocations and Aggregate Industry Productivity. Econometrica 71(6), 1695–1725. <https://doi.org/10.1111/1468-0262.00467>
+- Douglass C. North (1991). Institutions. Journal of Economic Perspectives 5(1), 97–112. <https://doi.org/10.1257/jep.5.1.97>
+- CORE Econ (2017). The Economy 1.0, Unit 11: Rent-seeking, price-setting, and market dynamics. CORE Econ. <https://books.core-econ.org/the-economy-v1/book/text/11.html>
+- CORE Econ (2017). The Economy 1.0, Unit 21: Innovation, information, and the networked economy. CORE Econ. <https://books.core-econ.org/the-economy-v1/book/text/21.html>

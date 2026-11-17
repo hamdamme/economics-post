@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using this metadata."
+title: "From Opportunity to Equilibrium"
+type: software
+version: 0.1.0
+authors:
+  - given-names: "Hamdam"
+    family-names: "Aynazarov"
+    website: "https://www.hamdam.me/"
+repository-code: "https://github.com/hamdamme/economics-post"
+license: MIT
+keywords:
+  - economics education
+  - economic profit
+  - market entry
+  - simulation
