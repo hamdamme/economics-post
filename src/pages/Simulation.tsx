@@ -32,11 +32,10 @@ function csv(result: Run, period: number) {
 }
 
 function exportsFor(result: Run, period: number) {
-  const record = run({ ...result.config, periods: period })
-  return <div className="actions"><button onClick={() => csv(record, period)}>Download timeline CSV</button>
-    <button onClick={() => exportJson('market-run.json', record)}>Download run JSON</button>
+  return <div className="actions"><button onClick={() => csv(result, period)}>Download timeline CSV</button>
+    <button onClick={() => exportJson('market-run.json', period === result.rows.length ? result : run({ ...result.config, periods: period }))}>Download run JSON</button>
     <button onClick={() => {
-      const rows = record.rows.flatMap(row => row.firms.map(f => [row.period, f.id, f.plant, f.capacity, f.q, f.revenue, f.variableCost, f.accounting, f.economic, f.ownerLabor, f.averageEconomicCost].join(',')))
+      const rows = result.rows.slice(0, period).flatMap(row => row.firms.map(f => [row.period, f.id, f.plant, f.capacity, f.q, f.revenue, f.variableCost, f.accounting, f.economic, f.ownerLabor, f.averageEconomicCost].join(',')))
       exportFile('market-firms.csv', 'period,firm_id,plant,capacity,output,revenue,variable_cost,accounting_profit,operating_surplus,owner_labor,average_economic_cost\n' + rows.join('\n'), 'text/csv')
     }}>Download firm CSV</button>
   </div>
@@ -68,7 +67,7 @@ export function ComparePage({ selected }: { selected: string }) {
     <Heading title="Compare the adjustment paths" eyebrow="Guided experiments">Start from matched conditions and track how a single mechanism changes what firms and customers experience.</Heading>
     <nav className="tabs" aria-label="Scenarios">{comparisons.map(c => <a key={c.id} href={`#/compare/${c.id}`} aria-current={c.id === comparison.id ? 'page' : undefined}>{c.title}</a>)}</nav>
     <section className="panel"><h2>{comparison.title}</h2><p>{comparison.description}</p>
-      <div className="cards">{arms.map(({ label, result }, i) => {
+      <div className="cards" data-pair={arms.length === 2}>{arms.map(({ label, result }, i) => {
         const end = lastRows[i]
         const activation = result.events.find(e => e.type === 'activation' && e.message.includes('resize'))
         return <div key={label}><h3>{label}</h3><p>Period {end.period} has {end.active} active firms and {fmt(end.quantity)} units sold. {end.price === null ? 'No transactions.' : `Price is ${fmt(end.price)} MU/unit.`} {activation && `First new plant arrives in period ${activation.period}.`}</p>
@@ -99,9 +98,22 @@ export function LabPage({ shared }: { shared: string }) {
   const [message, setMessage] = useState('')
   const [period, setPeriod] = useState(1)
   const [running, setRunning] = useState(false)
-  const result = useMemo(() => run(config), [config])
-  const current = result.rows[period - 1]
-  const timeline = markers([result], period)
+  const [calculated, setCalculated] = useState<{ config: Config; result?: Run; error?: string }>()
+  const calculation = calculated?.config === config ? calculated : undefined
+
+  useEffect(() => {
+    const worker = new Worker(new URL('../model/worker.ts', import.meta.url), { type: 'module' })
+    worker.onmessage = (event: MessageEvent<{ result?: Run; error?: string }>) => {
+      setCalculated({ config, ...event.data })
+      worker.terminate()
+    }
+    worker.onerror = () => {
+      setCalculated({ config, error: 'Could not load the simulation. Reload the page to try again.' })
+      worker.terminate()
+    }
+    worker.postMessage(config)
+    return () => worker.terminate()
+  }, [config])
 
   useEffect(() => {
     if (!running || period >= config.periods) return
@@ -121,6 +133,11 @@ export function LabPage({ shared }: { shared: string }) {
       load(next, changes.length ? `Applied ${labels.join(', ')}. The path now starts again at period 1.` : 'Restarted with the current settings.')
     } catch (error) { setError((error as Error).message) }
   }
+  const result = calculation?.result
+  const heading = <Heading eyebrow="Market lab" title="Play the market forward">See what changes when knowledge spreads, firms commit, and capacity arrives. Each step represents a model period.</Heading>
+  if (!result) return <>{heading}{calculation?.error ? <p role="alert">{calculation.error}</p> : <p role="status">Calculating the timeline…</p>}</>
+  const current = result.rows[period - 1]
+  const timeline = markers([result], period)
   const shownRows = result.rows.slice(0, period)
   const series = (key: string, label: string) => ({ key, label })
   const rowData = shownRows.map(({ firms: omitted, ...r }) => {
@@ -129,7 +146,7 @@ export function LabPage({ shared }: { shared: string }) {
   })
   const distribution: PlotRow[] = [...current.firms].sort((a, b) => a.economic - b.economic).map((f, i) => ({ x: i + 1, small: f.plant === 'small' ? f.economic : null, large: f.plant === 'large' ? f.economic : null, surplus: f.economic }))
   return <>
-    <Heading eyebrow="Market lab" title="Play the market forward">See what changes when knowledge spreads, firms commit, and capacity arrives. Each step represents a model period.</Heading>
+    {heading}
     <div className="panel">
       <h2>Playback</h2>
       <div className="actions">
